@@ -24,14 +24,15 @@ public class TestFile {
     public void countFreeDocs(){
         home1.navhome();
         home2.clickGetPaidButton();
-        Assert.assertEquals(home2.counter(home2.countable),2,"2 free docs not present");
+        Assert.assertEquals(home2.counter(home2.Freedocs),2,"2 free docs not present");
     }
     @Test
     public void paidDocs(){
         home1.navhome();
         home2.clickGetPaidButton();
-        Assert.assertEquals(home2.counter(home2.countable2),1,"1 doc bet 30 and 60$ not present");
-        System.out.println("Document Name is: "+ home2.eleText(home2.docname));
+        Assert.assertEquals(home2.counter(home2.paidDocs),1,"1 doc bet 30 and 60$ not present");
+        System.out.println("Doc name:");
+        home2.elementText(home2.docname);
     }
     @AfterMethod
     public void tearDown(){
