@@ -20,4 +20,8 @@ public class PomHome {
         driver.get(homepage);
         return this;
     }
+    public PomHome clickGetPaidButton(){
+        act.click(getPaidButton,getPaidVal);
+        return this;
+    }
 }
