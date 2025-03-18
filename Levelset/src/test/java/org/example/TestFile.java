@@ -22,14 +22,12 @@ public class TestFile {
     }
     @Test
     public void countFreeDocs(){
-        home1.navhome();
-        home2.clickGetPaidButton();
+        home1.navhome().clickGetPaidButton();
         Assert.assertEquals(home2.counter(home2.Freedocs),2,"2 free docs not present");
     }
     @Test
     public void paidDocs(){
-        home1.navhome();
-        home2.clickGetPaidButton();
+        home1.navhome().clickGetPaidButton();
         Assert.assertEquals(home2.counter(home2.paidDocs),1,"1 doc bet 30 and 60$ not present");
         System.out.println("Doc name:");
         home2.elementText(home2.docname);
