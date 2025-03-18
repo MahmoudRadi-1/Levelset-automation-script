@@ -15,15 +15,10 @@ public class PomGetPaid {
     }
     String docXpath ="//div[@class='right panel-heading--price']/span[@class='price-amount' and number(substring(., 2)) >= 30 and number(substring(., 2)) <= 60]";
     String docNameFinder = "/ancestor::div[@class='panel-heading left-right-pair']/div[@class='left']";
-    private By getPaidButton = By.xpath("//a[@class='btn btn-info btn-outline mob-dropdown-btn']");
-    public By getPaidVal = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and text()='$29']");
     public By Freedocs = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and text()='Free']");
     public By paidDocs = By.xpath(docXpath);
     public By docname = By.xpath(docXpath +docNameFinder);
-    public PomGetPaid clickGetPaidButton(){
-        act.click(getPaidButton,getPaidVal);
-        return this;
-    }
+
 
     public int counter(By locator){    // this method counts the number of webelements by the locator
         List<WebElement> elements = driver.findElements(locator);
