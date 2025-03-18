@@ -19,7 +19,7 @@ public class PomGetPaid {
     public By getPaidVal = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and text()='$29']");
     public By Freedocs = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and text()='Free']");
     public By paidDocs = By.xpath(docXpath);
-    public By docname = By.xpath(docXpath+docNameFinder);
+    public By docname = By.xpath(docXpath +docNameFinder);
     public PomGetPaid clickGetPaidButton(){
         act.click(getPaidButton,getPaidVal);
         return this;
@@ -30,14 +30,15 @@ public class PomGetPaid {
         int count = elements.size();
         return count;
     }
-    public String elementText(By locator){   //this function gets the text from the locator
+    public void elementText(By locator){   //this function gets the text from the locator
         List<WebElement> elements = driver.findElements(locator);
         for (int i = 0; i < elements.size(); i++) {
             WebElement element = elements.get(i);
+            String name = element.getText();
+            System.out.println(name);
+
         }
-        WebElement element = driver.findElement(locator);
-        String name = element.getText();
-        return name;
+
     }
 
 }
