@@ -13,12 +13,13 @@ public class PomGetPaid {
         this.driver = driver;
         act= new ActionsHandler(driver);
     }
-
+    String docXpath ="//div[@class='right panel-heading--price']/span[@class='price-amount' and number(substring(., 2)) >= 30 and number(substring(., 2)) <= 60]";
+    String docNameFinder = "/ancestor::div[@class='panel-heading left-right-pair']/div[@class='left']";
     private By getPaidButton = By.xpath("//a[@class='btn btn-info btn-outline mob-dropdown-btn']");
     public By getPaidVal = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and text()='$29']");
-    public By countable = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and text()='Free']");
-    public By countable2 = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and number(substring(., 2)) >= 30 and number(substring(., 2)) <= 60]");
-    public By docname = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and number(substring(., 2)) >= 30 and number(substring(., 2)) <= 60]/ancestor::div[@class='panel-heading left-right-pair']/div[@class='left']");
+    public By Freedocs = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and text()='Free']");
+    public By paidDocs = By.xpath(docXpath);
+    public By docname = By.xpath(docXpath+docNameFinder);
     public PomGetPaid clickGetPaidButton(){
         act.click(getPaidButton,getPaidVal);
         return this;
@@ -29,7 +30,7 @@ public class PomGetPaid {
         int count = elements.size();
         return count;
     }
-    public String eleText(By locator){   //this function gets the text from the locator
+    public String elementText(By locator){   //this function gets the text from the locator
         List<WebElement> elements = driver.findElements(locator);
         for (int i = 0; i < elements.size(); i++) {
             WebElement element = elements.get(i);
