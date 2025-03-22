@@ -1,3 +1,4 @@
+
 package org.example;
 
 import net.bytebuddy.asm.Advice;
@@ -20,7 +21,17 @@ public class ActionsHandler
         this.driver=driver;
     }
 
-
+private void doubleClick(By locator){
+    Actions actions = new Actions(driver);
+    WebElement element = driver.findElement(locator);
+    actions.doubleClick(element).perform();
+}
+private void hoverClick(By locator){
+    Actions actions = new Actions(driver);
+    WebElement element = driver.findElement(locator);
+    actions.moveToElement(element).perform();
+    driver.findElement(locator).click();
+}
     public void click (By locator,By validator) {
         boolean clicked=false;
         try {
@@ -34,9 +45,7 @@ public class ActionsHandler
         }
         if(!clicked) {
             try {
-                Actions actions = new Actions(driver);
-                WebElement element = driver.findElement(locator);
-                actions.doubleClick(element).perform();
+               doubleClick(locator);
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(2000));
                 WebElement val = wait.until(ExpectedConditions.presenceOfElementLocated(validator));
                 clicked=true;
@@ -59,10 +68,7 @@ public class ActionsHandler
 
         if (!clicked) {
             try {
-                Actions actions = new Actions(driver);
-                WebElement element = driver.findElement(locator);
-                actions.moveToElement(element).perform();
-                driver.findElement(locator).click();
+                hoverClick(locator);
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(2000));
                 WebElement val = wait.until(ExpectedConditions.presenceOfElementLocated(validator));
                 clicked=true;

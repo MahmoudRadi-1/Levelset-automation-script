@@ -11,26 +11,27 @@ import org.testng.annotations.Test;
 public class TestFile {
     WebDriver driver;
     PomHome homePage;
-    PomGetPaid PaidPage;
+    PomGetPaid paidPage;
+    ActionsHandler act;
 
     @BeforeMethod
     public void setup(){
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         homePage =new PomHome(driver);
-        PaidPage =new PomGetPaid(driver);
+        paidPage =new PomGetPaid(driver);
     }
     @Test
     public void countFreeDocs(){
-        homePage.navhome().clickGetPaidButton();
-        Assert.assertEquals(PaidPage.counter(PaidPage.Freedocs),2,"2 free docs not present");
+        homePage.nav().clickGetPaidButton();
+        Assert.assertEquals(paidPage.counter(paidPage.Freedocs),2,"2 free docs not present");
     }
     @Test
     public void paidDocs(){
-        homePage.navhome().clickGetPaidButton();
-        Assert.assertEquals(PaidPage.counter(PaidPage.paidDocs),1,"1 doc bet 30 and 60$ not present");
+        homePage.nav().clickGetPaidButton();
+        Assert.assertEquals(paidPage.counter(paidPage.paidDocs),1,"1 doc bet 30 and 60$ not present");
         System.out.println("Doc name:");
-        PaidPage.elementText(PaidPage.docname);
+        paidPage.elementText(paidPage.docname);
     }
     @AfterMethod
     public void tearDown(){

@@ -6,22 +6,23 @@ import org.openqa.selenium.WebDriver;
 public class PomHome {
     WebDriver driver;
     ActionsHandler act;
-
+    PomGetPaid paid;
     public PomHome(WebDriver driver) {
         this.driver = driver;
         act = new ActionsHandler(driver);
+        paid= new PomGetPaid(driver);
     }
 
     String homepage = "https://www.levelset.com/";
     private By getPaidButton = By.xpath("//a[@class='btn btn-info btn-outline mob-dropdown-btn']");
-    public By getPaidVal = By.xpath("//div[@class='right panel-heading--price']/span[@class='price-amount' and text()='$29']");
 
-    public PomHome navhome() {  //this methods goes to homepage
+
+    public PomHome nav() {  //this methods goes to homepage
         driver.get(homepage);
         return this;
     }
     public PomHome clickGetPaidButton(){
-        act.click(getPaidButton,getPaidVal);
+        act.click(getPaidButton,paid.getPaidVal);
         return this;
     }
 }
